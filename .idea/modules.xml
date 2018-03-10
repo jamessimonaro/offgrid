@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Programming.iml" filepath="$PROJECT_DIR$/Programming.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/offgrid.iml" filepath="$PROJECT_DIR$/.idea/offgrid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/offgrid.iml" filepath="$PROJECT_DIR$/offgrid.iml" />
     </modules>
   </component>
 </project>

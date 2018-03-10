@@ -4,19 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jamessimonaro.offgridv1.MainActivity">
+    tools:context="com.example.jamessimonaro.offgridv1.WebBrowser">
 
-    <Button
-        android:id="@+id/browse_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Start Browsing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 </android.support.constraint.ConstraintLayout>
