@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Initialize GUI components
     Button browse_btn_;
+    Button todolist_btn_;
 
 
     @Override
@@ -23,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire button to the java code
         browse_btn_=(Button)findViewById(R.id.browse_btn);
+        todolist_btn_=(Button)findViewById(R.id.todolist_btn);
+
 
         //On click listener for the browse button
         browse_btn_.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {  start_browsing();     }});
+        todolist_btn_.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {  todo_list();     }});
+
 
     }
 
@@ -34,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
         Intent myIntent = new Intent(MainActivity.this, WebBrowser.class);
         MainActivity.this.startActivity(myIntent);
         }
+
+    public void todo_list(){
+        //This method will open a browser within the app
+        Intent mylist = new Intent(MainActivity.this, todolist.class);
+        MainActivity.this.startActivity(mylist);
+    }
 
 }
 
