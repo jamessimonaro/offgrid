@@ -39,7 +39,7 @@ public class WebBrowser extends AppCompatActivity {
        wv.getSettings().getBuiltInZoomControls();
 
        //The URL that the web browser will land on
-       wv.loadUrl("http://www.darkskywest.com/index.htm");
+       wv.loadUrl("http://www.google.com");
     }
 
 
