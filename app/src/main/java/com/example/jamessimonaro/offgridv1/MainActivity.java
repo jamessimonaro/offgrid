@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Initialize GUI components
     Button browse_btn_;
-    //TextView textView_;
 
 
     @Override
@@ -23,23 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Wire button to the java code
         browse_btn_=(Button)findViewById(R.id.browse_btn);
-        //textView_ =(TextView)findViewById(R.id.textView);
-
-        //Testing retrieve messages from Web Browser activity
-       // Bundle bundle = getIntent().getExtras();
-        // String message = getIntent().getStringExtra("message key");
-        //textView_.setText(message);
-
 
         //On click listener for the browse button
         browse_btn_.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {  start_browsing();     }});
 
-
-
-
     }
 
         public void start_browsing(){
+        //This method will open a browser within the app
         Intent myIntent = new Intent(MainActivity.this, WebBrowser.class);
         MainActivity.this.startActivity(myIntent);
         }
