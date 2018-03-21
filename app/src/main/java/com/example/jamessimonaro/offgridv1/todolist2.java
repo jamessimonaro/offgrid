@@ -1,11 +1,13 @@
 package com.example.jamessimonaro.offgridv1;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -34,7 +36,6 @@ public class todolist2 extends AppCompatActivity {
 
         //Onclick listener for Add button
         btAdd2_.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {  additem();     }});
-
 
         k = this;
 
@@ -71,7 +72,11 @@ public class todolist2 extends AppCompatActivity {
 
         //Remove item from textbox after added
         txtInput_.setText("");
+
+        //hide keyboard
+        hidekeyboard(this);
     }
+
 
     public void create_database(String database_name)
     {
@@ -161,6 +166,19 @@ public class todolist2 extends AppCompatActivity {
         if (myDB != null) myDB.close();
 
         return ShowData.trim(); //trim any end white-space
+    }
+
+
+    public static void hidekeyboard(Activity activity){
+        //hide keyboard method
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = activity.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(activity);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }
