@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Button todolist_btn_;
     ImageView greyscale_img_;
     TextView greyscale_txt_;
+    Boolean color = true;
 
 
     @Override
@@ -46,18 +47,18 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.startActivity(myIntent);
         }
 
-    public void todo_list(){
-        //This method will open a browser within the app
-        Intent mylist = new Intent(MainActivity.this, todolist.class);
+        public void todo_list(){
+        //This method will open the to do list
+        Intent mylist = new Intent(MainActivity.this, todolist2.class);
         MainActivity.this.startActivity(mylist);
     }
 
-    public void greyscale(){
+        public void greyscale(){
         //This method will change the button color from rainbow to black and white
 
-        Boolean color = true;
 
         if(color==true) {
+            //If the color setting is turned on, turn the image to black and white
             color = false;
             greyscale_txt_.setText("Grey Scale");
             ColorMatrix matrix = new ColorMatrix();
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
-            //For some reason this boolean isn't working???
+            //If the color setting is turned off, turn the image to color
             color = true;
             greyscale_txt_.setText("Full Color");
             ColorMatrix matrix = new ColorMatrix();
@@ -80,8 +81,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-
-
-
-//HELLO THIS IS A TEST!

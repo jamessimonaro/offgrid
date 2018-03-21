@@ -4,34 +4,41 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import java.util.ArrayList;
-import java.util.Arrays;
+import android.widget.TextView;
 
+public class todolist2 extends AppCompatActivity {
 
-public class todolist extends AppCompatActivity {
-
+    //Initialize variables and GUI components
     public Context k;
+    String insert_command;
+    String DB = "to_do_list_database";
+    String output;
+    TextView to_do_list_;
+    EditText txtInput_;
+    String newItem;
+    Button btAdd2_;
 
-    ArrayAdapter<String> adapter;
-    EditText editText;
-    ArrayList<String> itemList;
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_todolist);
+        setContentView(R.layout.activity_todolist2);
+
+        //Wire GUI components to Java
+        to_do_list_=(TextView) findViewById(R.id.to_do_list);
+        txtInput_=(EditText)findViewById(R.id.txtInput);
+        btAdd2_=(Button)findViewById(R.id.btAdd2);
+
+        //Onclick listener for Add button
+        btAdd2_.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {  additem();     }});
+
 
         k = this;
 
-        /*
-        Testing SQL Lite.. Still not working
-
-        String DB = "to_do_list_database";
-
+        //database initialization
         //create database
         create_database(DB);
 
@@ -39,48 +46,33 @@ public class todolist extends AppCompatActivity {
         String table_details = "(item VARCHAR)";
         create_table("todo", table_details, DB);
 
-        //insert some information
-        String insert_command = "INSERT INTO todo (item 'Do 498 homework')";
+        //display the current to-do's
+        //set text view to new input
+        output = select_data_from_table_to_string("select * from todo", DB);
+        to_do_list_.setText(output);
 
+
+    }
+
+    public void additem() {
+
+        //Get user entry
+        newItem = txtInput_.getText().toString();
+
+        //insert command for sqlite
+        insert_command = "INSERT INTO todo (item) VALUES('"+  newItem + "')";
+
+        //insert data to database
         table_operation(insert_command, DB);
 
-        //select out information
-        String output;
-        output = select_data_from_table_to_string("select * from test", DB);
-        itemList.add(output);
+        //set text view to new input
+        output = select_data_from_table_to_string("select * from todo", DB);
+        to_do_list_.setText(output);
 
-        */
+        //Remove item from textbox after added
+        txtInput_.setText("");
+    }
 
-
-        //Default items in the to-do list
-        String[] items={"Do 498 homework","Go to the gym","Cook dinner"};
-        itemList=new ArrayList<String>(Arrays.asList(items));
-        adapter=new ArrayAdapter<String>(this,R.layout.list_item,R.id.txtview,itemList);
-        ListView listV=(ListView)findViewById(R.id.list);
-        listV.setAdapter(adapter);
-
-        //Wire GUI Components to Java
-        editText=(EditText)findViewById(R.id.txtInput);
-        Button btAdd=(Button)findViewById(R.id.btAdd);
-
-
-        btAdd.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {     additem();       }});}
-
-
-              public void additem() {
-
-                  //Get user entry
-                  String newItem = editText.getText().toString();
-
-                  // add new item to array list
-                  itemList.add(newItem);
-
-                  // notify list view of data changed
-                  adapter.notifyDataSetChanged();
-
-                  //Remove item from textbox after added
-                  editText.setText("");
-              }
     public void create_database(String database_name)
     {
         //utility function to create a database
@@ -171,7 +163,4 @@ public class todolist extends AppCompatActivity {
         return ShowData.trim(); //trim any end white-space
     }
 
-
-
 }
-
